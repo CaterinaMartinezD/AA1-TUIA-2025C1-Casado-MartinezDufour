@@ -7,15 +7,15 @@ Notebook de trabajo: TP-regresion-AA1.ipynb
 3) 
  #   Column             Non-Null Count   Dtype  
 ---  ------             --------------   -----  
- 0   key                200000 non-null  int64   -> la sacamos?
+ 0   key                200000 non-null  int64   -> la sacamos? 
  1   date               200000 non-null  object  -> la sacamos?
- 2   fare_amount        200000 non-null  float64 -> target
+ 2   fare_amount        200000 non-null  float64 -> target (costo de cada viaje)
  3   pickup_datetime    200000 non-null  object  -> obtenemos dia de la semana y hora - cualitativas -> onehot encoding
  4   pickup_longitude   200000 non-null  float64 -> obtener distancia a partir de las coordenadas
- 5   pickup_latitude    200000 non-null  float64
+ 5   pickup_latitude    200000 non-null  float64 -> cuantitativa continua
  6   dropoff_longitude  199999 non-null  float64 -> tenemos 1 nulo 
  7   dropoff_latitude   199999 non-null  float64 -> tenemos 1 nulo
- 8   passenger_count    200000 non-null  int64   -> cuantitativa
+ 8   passenger_count    200000 non-null  int64   -> cuantitativa discreta
 
 hay valores muy grandes en las coordenadas posiblemente erroneos
 
