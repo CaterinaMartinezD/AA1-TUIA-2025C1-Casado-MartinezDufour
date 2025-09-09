@@ -23,3 +23,10 @@ hay valores muy grandes en las coordenadas posiblemente erroneos
 
 Diferencia en latitud y longitud (Δlat, Δlon).
 Coordenadas de pickup y dropoff (útiles para el modelo si ciertas zonas tienen tarifas diferentes).
+
+
+# 9/9/2025
+- solo trabajar con el dataset de train desde el principio: X_train
+- tema imputacion de coordenadas por KNN: yo agregaria las coordenadas fuera de rango valido que tengas el resto de coordenadas validas
+
+
