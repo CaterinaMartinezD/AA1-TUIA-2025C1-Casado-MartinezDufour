@@ -30,3 +30,6 @@ Coordenadas de pickup y dropoff (útiles para el modelo si ciertas zonas tienen 
 - tema imputacion de coordenadas por KNN: yo agregaria las coordenadas fuera de rango valido que tengas el resto de coordenadas validas
 y el resto que no se pueda imputar lo eliminamos
 
+hay que analizar tambien y_train?
+Ojo: si elimino una fila de X_train tambien tengo que eliminar la misma fila de y_train
+
