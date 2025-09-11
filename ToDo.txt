@@ -31,5 +31,8 @@ Coordenadas de pickup y dropoff (útiles para el modelo si ciertas zonas tienen 
 y el resto que no se pueda imputar lo eliminamos
 
 hay que analizar tambien y_train?
+si, descartar valores negativos, cero o nulos antes de dividir
+
 Ojo: si elimino una fila de X_train tambien tengo que eliminar la misma fila de y_train
 
+pasajeros validos: [0, 6] pasajeros
