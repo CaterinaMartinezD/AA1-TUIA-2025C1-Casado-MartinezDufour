@@ -36,3 +36,12 @@ si, descartar valores negativos, cero o nulos antes de dividir
 Ojo: si elimino una fila de X_train tambien tengo que eliminar la misma fila de y_train
 
 pasajeros validos: [0, 6] pasajeros
+
+# 15/09/2025
+Modificaciones:
+- correccion de parentesis en el filtro de coordenadas validas.
+- agregado de un grafico de lineas mostrando la cantidad de viajes por año y mes.
+- analisis de outliers en fare_amount (considero que es mejor dejarlos ya que al utilizar un escalonado robusto no perjudica al dataset).
+- codificación de variables categoricas a numéricas mediante dummies y pd.cut.
+- aplicación de escalado robusto a las variables.
+- agregado de métricas de evaluación: RMSE, MAE y R².
