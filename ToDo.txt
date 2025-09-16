@@ -45,3 +45,9 @@ Modificaciones:
 - codificación de variables categoricas a numéricas mediante dummies y pd.cut.
 - aplicación de escalado robusto a las variables.
 - agregado de métricas de evaluación: RMSE, MAE y R².
+
+# 16/09/2025
+Modificaciones:
+- Analisis de coordenadas invertidas
+- Agreagado de las coordenadas de new york city
+- Imputación de coordenadas con KNN y la mediana
