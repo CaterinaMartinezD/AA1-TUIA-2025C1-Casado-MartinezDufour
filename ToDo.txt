@@ -57,7 +57,7 @@ Tema coordenadas:
 - Yo no eliminaria los casos de coordenadas invalidas +1, imputaria la mediana siempre
 - La imputacion entendí que era sobre la distancia_km no sobre las coordenadas
 Tema escalado robusto:
-- ver si esta bien que de negativo el fare_amount y la distancia_km??
+- ver si esta bien que de negativo el fare_amount y la distancia_km?? Esta correcto
 Tema metricas:
 - agregue algo de metricas pero no se si esta bien, o hay algun error.
 - agregue el calculo por regresion lineal
