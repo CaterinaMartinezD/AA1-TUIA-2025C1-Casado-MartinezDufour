@@ -41,7 +41,7 @@ pasajeros validos: [0, 6] pasajeros
 Modificaciones:
 - correccion de parentesis en el filtro de coordenadas validas.
 - agregado de un grafico de lineas mostrando la cantidad de viajes por año y mes.
-- analisis de outliers en fare_amount (considero que es mejor dejarlos ya que al utilizar un escalonado robusto no perjudica al dataset).
+- analisis de outliers en fare_amount (considero que es mejor dejarlos ya que al utilizar un escalado robusto no perjudica al dataset).
 - codificación de variables categoricas a numéricas mediante dummies y pd.cut.
 - aplicación de escalado robusto a las variables.
 - agregado de métricas de evaluación: RMSE, MAE y R².
@@ -49,5 +49,16 @@ Modificaciones:
 # 16/09/2025
 Modificaciones:
 - Analisis de coordenadas invertidas
-- Agreagado de las coordenadas de new york city
+- Agregado de filtro de las coordenadas de new york city
 - Imputación de coordenadas con KNN y la mediana
+
+# 16/09/2025
+Tema coordenadas:
+- Yo no eliminaria los casos de coordenadas invalidas +1, imputaria la mediana siempre
+- La imputacion entendí que era sobre la distancia_km no sobre las coordenadas
+Tema escalado robusto:
+- ver si esta bien que de negativo el fare_amount y la distancia_km??
+Tema metricas:
+- agregue algo de metricas pero no se si esta bien, o hay algun error.
+- agregue el calculo por regresion lineal
+- intente agregar ElasticNetCV
