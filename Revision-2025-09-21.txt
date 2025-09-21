@@ -3,11 +3,14 @@
 - eliminamos key y date
 - eliminamos fare_amount negativos o cero
 
+* antes tendriamos que revertir las coordenadas
+
 - agregamos columnas: distancia_km, delta_lat, delta_lon
-* antes tendriamos que revertir las coordenadas o imputar?
+quitamos delta_lat, delta_lon
+
 - agregamos columnas: pickup_day_of_week, pickup_hour, franja_horaria
 * aca tendriamos que justificar la eleccion de la franja_horaria o bien usa la hora del dia directamente
-
+hacer una grafica relaciona la hora y la tarifa
 
 2) dividir df en train_df y test_df
 
@@ -29,7 +32,7 @@ elif(invalid_count == 2 or invalid_count == 3):
         train_df = train_df.drop(index)
 
 cambiar etiqueta: 'imputar_mean' x 'imputar_median'
-por otro lado en el caso de tener mas de coordenadas invalidas, imputaria directamente la distancia_km con la media, y no las coordenadas
+por otro lado en el caso de tener mas de coordenadas invalidas, imputaria directamente la distancia_km con la mediana, y no las coordenadas
 y no eliminaria registros.
 
 -- recalcular distancia_km, delta_lat, delta_lon
