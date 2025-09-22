@@ -1,46 +1,45 @@
++ : hecho
+- : sin hacer
+#* : Revisar
+
 1) cambios sobre el dataset original
 
-- eliminamos key y date
-- eliminamos fare_amount negativos o cero
-
-* antes tendriamos que revertir las coordenadas
-
-- agregamos columnas: distancia_km, delta_lat, delta_lon
-quitamos delta_lat, delta_lon
-
-- agregamos columnas: pickup_day_of_week, pickup_hour, franja_horaria
++ eliminamos key y date
++ eliminamos fare_amount negativos o cero
++ revertir las coordenadas invertidas
++ agregamos columnas: distancia_km, pickup_day_of_week, pickup_hour, franja_horaria
++ quitamos delta_lat, delta_lon
 * aca tendriamos que justificar la eleccion de la franja_horaria o bien usa la hora del dia directamente
-hacer una grafica relaciona la hora y la tarifa
+* hacer una grafica relaciona la hora y la tarifa
++ passenger_count: no es cuantitativa, el profe sugirio crear una variable dummie 0:paquete, 1-4:normal, 5-6:XL
++ imputacion de mediana a valores fuera de rango de passenger_count (no puedo pasarla a texto y hacer luego la imputación)
 
 2) dividir df en train_df y test_df
 
-- imputacion de mediana a valores fuera de rango de passenger_count en train_df y test_df
-- passenger_count: no es cuantitativa, el profe sugirio crear una variable dummie 0:paquete, 1-4:normal, 5-6:XL
++ transformaciones a pickup_latitude, dropoff_latitude, pickup_longitude y dropoff_longitude
++ Eliminación de Modificación de coordenadas invertidas (latitud y longitud) : separe en 2 loops
++ imputacion de coordenadas con KNN
++ recorrer el dataset train_df y analizo si las coordenadas no estan dentro de New York o son cero o Nan la considero inválida.
 
-- transformaciones a pickup_latitude, dropoff_latitude, pickup_longitude y dropoff_longitude
--- Modificación de coordenadas invertidas (latitud y longitud) : separe en 2 loops
--- imputacion de coordenadas con KNN
-# recorrer el dataset train_df y analizo si las coordenadas no estan dentro de New York o son cero o Nan la considero inválida.
++ REVISAR esta logica:
+    elif(invalid_count == 2 or invalid_count == 3):
+            modified_count_mean_train += 1
+            # marcar la fila como modificada columna imputada = True
+            train_df.at[index, 'imputar_mean'] = True
+        elif(invalid_count == 4):
+            train_df = train_df.drop(index)
 
-REVISAR esta logica:
++ cambiar etiqueta: 'imputar_mean' x 'imputar_median'
++ por otro lado en el caso de tener mas de coordenadas invalidas, imputaria directamente la distancia_km con la mediana, y no las coordenadas 
++ y no eliminaria registros.
 
-elif(invalid_count == 2 or invalid_count == 3):
-        modified_count_mean_train += 1
-        # marcar la fila como modificada columna imputada = True
-        train_df.at[index, 'imputar_mean'] = True
-    elif(invalid_count == 4):
-        train_df = train_df.drop(index)
++ recalcular distancia_km
 
-cambiar etiqueta: 'imputar_mean' x 'imputar_median'
-por otro lado en el caso de tener mas de coordenadas invalidas, imputaria directamente la distancia_km con la mediana, y no las coordenadas
-y no eliminaria registros.
++ imputacion de distancia_km con mediana
++ quitariamos las variables delta_lat, delta_lon ya que no las podriamos calcular sin las coordenadas
 
--- recalcular distancia_km, delta_lat, delta_lon
++ calculamos valores atipicos en distancia_km (toma los valores de distancia mayor a 0.13km (una cuadra) y menor a 60km (dist. max en NYC))
 
--- imputacion de distancia_km con mediana
-quitariamos las variables delta_lat, delta_lon ya que no las podriamos calcular sin las coordenadas
-
--- calculamos valores atipicos en distancia_km
 lower_bound_train = (Q1_train - 5 * IQR_train).round(2)
 upper_bound_train = (Q3_train + 5 * IQR_train).round(2)
 
@@ -74,27 +73,28 @@ outlier_idx_test = outliers_test.index
 test_df = test_df.drop(outlier_idx_test)
 
 
-# mostrar cantidad de viajes por año y mes
-sacaria esto y podria un grafico de correlacion ejemplo distance_km y tarifa:
++ (# mostrar cantidad de viajes por año y mes) sacaria esto y podria un grafico de correlacion ejemplo distance_km y tarifa
 
-# Si una cuadra mide 130m, podriamos considerar aquellos viajes que son a partir de al menos una cuadra (130 mts).
-# Con esto ya eliminamos el outlier de casi 500USD.
++ Si una cuadra mide 130m, podriamos considerar aquellos viajes que son a partir de al menos una cuadra (130 mts). Con esto ya eliminamos el outlier de casi 500USD.
 
--- esto estaria mal, usar siempre los umbrales de train_df
++ esto estaria mal, usar siempre los umbrales de train_df
 lower_test = test_df['fare_amount'].quantile(0.01)
 upper_test = test_df['fare_amount'].quantile(0.99)
 # Filas que seran eliminadas
 outliers_test = test_df[(test_df['fare_amount'] < lower_test) | (test_df['fare_amount'] > upper_test)]
 
--- Por otro lado no eliminaria, deberiamos imputar con la mediana
+- Por otro lado no eliminaria, deberiamos imputar con la mediana
 
--- Las dummies hacerlo con sklearn (recomendacion del profe)
++ Las dummies hacerlo con sklearn (recomendacion del profe)
 
 # codificacion de categorica a numerica. no necesitan escalado porque ya están en [0, 1].
 train_df = pd.get_dummies(train_df, columns=['franja_horaria'], prefix='franja', dtype=int)
 test_df = pd.get_dummies(test_df, columns=['franja_horaria'], prefix='franja', dtype=int)
 
-#para entrenar no usaria val_df, nos quedariamos solo con train y test, porque val no lo usariamos para validacion cruzada en este tp
++ para entrenar no usaria val_df, nos quedariamos solo con train y test, porque val no lo usariamos para validacion cruzada en este tp
 
 -- mejoras en graficas de gradiante
 -- agregue el calculo de R2 ajustado
+
+Guarde la versión anterior a esta actualización por si acaso...
+- Falta el informe desde Métodos de gradiente descendiente y hacer los graficos de residuos
