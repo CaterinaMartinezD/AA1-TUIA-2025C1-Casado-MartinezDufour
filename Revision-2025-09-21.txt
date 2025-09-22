@@ -93,8 +93,11 @@ test_df = pd.get_dummies(test_df, columns=['franja_horaria'], prefix='franja', d
 
 + para entrenar no usaria val_df, nos quedariamos solo con train y test, porque val no lo usariamos para validacion cruzada en este tp
 
--- mejoras en graficas de gradiante
--- agregue el calculo de R2 ajustado
++ mejoras en graficas de gradiante
++ agregue el calculo de R2 ajustado
 
-Guarde la versión anterior a esta actualización por si acaso...
-- Falta el informe desde Métodos de gradiente descendiente y hacer los graficos de residuos
+* Guarde la versión anterior a esta actualización por si acaso...
++ Falta el informe desde Métodos de gradiente descendiente 
+- hacer los graficos de residuos
+
+* Hay que calcular R2 ajustado en los métodos de regularización?
